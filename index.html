@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>עיר חכמה • דשבורדים</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    
+    <style>
+      :root {
+        --bg: #0e1522;
+        --card: #0c1424;
+        --accent: #f59e0b;
+        --good: #22c55e;
+        --bad: #ef4444;
+      }
+      body {
+        font-family: 'Heebo', sans-serif;
+        background: radial-gradient(1200px 600px at 85% -10%, #172033 10%, transparent 40%) no-repeat fixed, var(--bg);
+        color: #e6eef7;
+        margin: 0;
+        height: 100%;
+        overflow-x: hidden;
+      }
+      .leaflet-container {
+        background: #0f172a;
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+      }
+      
+      /* Animation Keyframes */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-up { animation: fadeUp 0.4s ease-out both; }
+
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .animate-marquee {
+        animation: marquee 30s linear infinite;
+      }
+
+      @keyframes pulse-soft {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(0.9); }
+      }
+      .status-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-inline-end: 6px;
+        animation: pulse-soft 2s infinite;
+      }
+
+      /* Modern Layout Transitions */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 1.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .modern-layout .card-main { grid-column: span 12 !important; order: 3; min-height: 400px !important; }
+      .modern-layout .card-map { grid-column: span 12 !important; order: 2; height: 350px !important; }
+      .modern-layout .card-sub { grid-column: span 4 !important; order: 1; }
+
+      /* Einstein Bubble */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      .einstein-bubble { animation: float 4s ease-in-out infinite; }
+
+      ::-webkit-scrollbar { width: 4px; height: 4px; }
+      ::-webkit-scrollbar-track { background: #0f172a; }
+      ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+
+      /* Custom Recharts Styles for Dark Mode */
+      .recharts-default-legend {
+        color: #94a3b8 !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .recharts-legend-item-text {
+        color: #94a3b8 !important;
+        margin-right: 4px !important;
+      }
+      .recharts-legend-wrapper {
+        padding-top: 15px !important;
+      }
+      .custom-popup .leaflet-popup-content-wrapper {
+        background: #0c1424;
+        color: #e2e8f0;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+      }
+      .custom-popup .leaflet-popup-tip {
+        background: #0c1424;
+      }
+      
+      /* Monday Board Styles */
+      .kanban-column::-webkit-scrollbar { display: none; }
+      .kanban-column { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "@google/genai": "https://esm.sh/@google/genai@1.3.0",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0?external=react",
+    "recharts": "https://esm.sh/recharts@2.13.3?external=react,react-dom",
+    "leaflet": "https://esm.sh/leaflet@1.9.4",
+    "react-leaflet": "https://esm.sh/react-leaflet@5.0.0?external=react,react-dom,leaflet",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.3/",
+    "react/": "https://aistudiocdn.com/react@^19.2.3/"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "Smart City Dashboard",
+  "description": "A comprehensive municipal dashboard for monitoring waste, security, transport, and more using AI analytics.",
+  "requestFramePermissions": [
+    "geolocation",
+    "microphone"
+  ]
+}
